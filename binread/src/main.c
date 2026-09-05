@@ -12,6 +12,8 @@ int main(int argc, char *argv[])
 
   FILE *file;
 
+  uint32_t beginning, end;
+
   file = fopen(argv[1], "r");
 
   input = init_buffer();
@@ -21,4 +23,11 @@ int main(int argc, char *argv[])
   printf("------        ----------\n");
 
   print_buffer(input, N_BYTES);
+
+  printf("\nEnter the first byte of the Range: \n");
+  scanf("%8X", &beginning);
+  printf("Enter the second byte of the Range: \n");
+  scanf("%8X", &end);
+
+
 }

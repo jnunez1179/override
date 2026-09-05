@@ -11,7 +11,7 @@
 
 struct buffer{
   uint8_t bytes[FILE_SIZE];
-  int current_byte;
+  uint8_t *address;
   int bytes_per_line;
   int file_size;
 };
@@ -53,23 +53,16 @@ void print_buffer(Buffer input, int bytes_per_line)
 {
   input->bytes_per_line = bytes_per_line;
 
-  int offset = 0;
+  int current_byte = 0, offset = 0;
 
-    while (!is_end_of_file(input))
+    while (current_byte < input->file_size)
     {
       printf("%.8X:     ", offset);
-      for (int i = 0; (i < input->bytes_per_line) && !is_end_of_file(input); i++)
+      for (int i = 0; (i < input->bytes_per_line) && (current_byte < input->file_size); i++)
       {
-        printf("%.2hhX ", input->bytes[input->current_byte++]);
+        printf("%.2hhX ", input->bytes[current_byte++]);
       }
       printf("\n");
       offset += input->bytes_per_line;
     }
 }
-
-
-bool is_end_of_file(Buffer input)
-{
-  return (input->current_byte >= input->file_size);
-}
-
