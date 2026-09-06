@@ -7,32 +7,35 @@
 
 #define ENDIAN_VALUES 2
 
-typedef struct {
+struct size {
   union {
     uint8_t selected_bytes[4];
-    uint32_t uint32;
-    int32_t int32;
-    float floater;
-  } four_bytes;
+    union {
+      int32_t int32;
+      uint32_t uint32;
+      float floater;
+    } four_bytes;
 
-  union {
-    uint8_t selected_bytes[2];
-    uint16_t uint16;
-    int16_t int16;
-  } two_bytes;
+    union {
+      int16_t int16;
+      uint16_t uint16;
+      short shorter;
+    } two_bytes;
 
-  union {
-    uint8_t selected_bytes[1];
-    uint8_t uint8;
-    int8_t int8;
-  } one_byte;
-} Size;
+    union {
+      int8_t int8;
+      uint8_t uint8;
+      char character;
+    } one_byte;
+  } memory;
+  uint8_t amount_bytes;
+};
 
 bool endianess[ENDIAN_VALUES] = {false};
 
-Memory select_memory(Buffer input, uint32_t beginning, uint32_t end)
+Bytes select_memory(Buffer input, uint32_t offset_one, uint32_t offset_two)
 {
-  Memory m = malloc(sizeof(Size));
+  Bytes m = calloc(return_size(input), sizeof(return_byte(input, 0)));
 
    if (m == NULL)
    {
@@ -58,7 +61,7 @@ Memory select_memory(Buffer input, uint32_t beginning, uint32_t end)
    }
    // Implement functionality to make program prompt another range if range is invalid
 
-   int i = 0;
+   uint32_t i = 0;
    do {m->memory.selected_bytes[i] = return_byte(input, beginning++);}
    while (i++ < range);
 
