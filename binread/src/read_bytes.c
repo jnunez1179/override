@@ -12,7 +12,7 @@
 struct buffer{
   uint8_t bytes[FILE_SIZE];
   uint8_t bytes_per_line;
-  uint8_t buffer_size;
+  uint32_t buffer_size;
 };
 
 Buffer init_buffer()
@@ -45,19 +45,19 @@ void create_buffer(Buffer input, FILE *file)
     printf("Binary too large (>1MB)\n");
     exit(EXIT_FAILURE);
   }
-  input->buffer_size = (uint8_t) i;
+  input->buffer_size = (uint32_t) i;
 }
 
 void print_buffer(Buffer input, int bytes_per_line)
 {
   input->bytes_per_line = bytes_per_line;
 
-  int current_byte = 0, offset = 0;
+  uint32_t current_byte = 0, offset = 0;
 
     while (current_byte < input->buffer_size)
     {
       printf("%.8X:     ", offset);
-      for (int i = 0; (i < input->bytes_per_line) && (current_byte < input->buffer_size); i++)
+      for (uint32_t i = 0; (i < input->bytes_per_line) && (current_byte < input->buffer_size); i++)
       {
         printf("%.2hhX ", input->bytes[current_byte++]);
       }
@@ -76,7 +76,7 @@ uint8_t return_byte(Buffer input, uint32_t offset)
   return input->bytes[offset];
 }
 
-uint8_t return_size(Buffer input)
+uint32_t return_size(Buffer input)
 {
   return input->buffer_size;
 }
