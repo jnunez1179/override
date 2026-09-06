@@ -40,20 +40,29 @@ Memory select_memory(Buffer input, uint32_t beginning, uint32_t end)
      exit(EXIT_FAILURE);
    }
 
-  uint32_t range = end - beginning + 1;
+   uint32_t beginning, end, range;
 
-  if ((range > 0) && (range <=7))
-  {
-    int i;
-    for (i = 0; i < range; i++)
-      m->one_byte.selected_bytes[i] = *input->address++];
-  } else if ((range > 7) && (range <= 15))
-  {
-    for (int i = 0; i < range; i++)
-      m->one_byte.selected_bytes[i] = *input->address++];
-  } else {
-    for (int i = 0; i < range; i++)
-      m->one_byte.selected_bytes[i] = *input->address++];
-  }
-  return m;
+   if (offset_one < offset_two)
+   {
+     beginning = offset_one;
+     end = offset_two;
+   } else {
+     beginning = offset_two;
+     end = offset_one;
+   }
+
+   if (((range = (end - beginning)) >= 4))
+   {
+     printf("Invalid Range of Offsets.\nEnsure 0 < Range >= 4\n");
+     exit(EXIT_FAILURE);
+   }
+   // Implement functionality to make program prompt another range if range is invalid
+
+   int i = 0;
+   do {m->memory.selected_bytes[i] = return_byte(input, beginning++);}
+   while (i++ < range);
+
+   m->amount_bytes = i;
+
+   return m;
 }

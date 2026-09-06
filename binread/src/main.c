@@ -24,9 +24,9 @@ int main(int argc, char *argv[])
 
   print_buffer(input, N_BYTES);
 
-  printf("\nEnter the first byte of the Range: \n");
+  printf("\nEnter the first offset of the Range (Range <= 8 bytes): \n");
   scanf("%8X", &beginning);
-  printf("Enter the second byte of the Range: \n");
+  printf("Enter the second offset of the Range (Range <= 8 bytes): \n");
   scanf("%8X", &end);
 
 

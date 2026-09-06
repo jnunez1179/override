@@ -2,10 +2,11 @@
 #define SELECT_MEMORY_H
 
 #include <stdint.h>
+#include "read_bytes.h"
 
-typedef Size *Memory;
+typedef struct size *Bytes;
 
-Memory select_memory(Buffer input, uint32_t beginning, uint32_t end);
+Bytes select_memory(Buffer input, uint32_t offset_one, uint32_t offset_two);
 
 
 #endif
