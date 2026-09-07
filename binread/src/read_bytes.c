@@ -66,7 +66,7 @@ void print_buffer(Buffer input, int bytes_per_line)
     }
 }
 
-uint8_t return_byte(Buffer input, uint32_t offset)
+uint8_t return_buffer_byte(Buffer input, uint32_t offset)
 {
   if (offset >= input->buffer_size)
   {
@@ -76,7 +76,7 @@ uint8_t return_byte(Buffer input, uint32_t offset)
   return input->bytes[offset];
 }
 
-uint32_t return_size(Buffer input)
+uint32_t return_buffer_size(Buffer input)
 {
   return input->buffer_size;
 }
