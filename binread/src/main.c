@@ -26,10 +26,14 @@ int main(int argc, char *argv[])
 
   print_buffer(input, N_BYTES);
 
-  printf("\nEnter the first offset of the Range (Range <= 8 bytes): \n");
-  scanf("%8X", &beginning);
-  printf("Enter the second offset of the Range (Range <= 8 bytes): \n");
-  scanf("%8X", &end);
+  printf("\nEnter the first offset of the Range (Range <= 4 bytes): \n");
+  scanf("%8X", &offset_one);
+  printf("Enter the second offset of the Range (Range <= 4 bytes): \n");
+  scanf("%8X", &offset_two);
 
+  selected_memory = select_memory(input, offset_one, offset_two);
 
+  printf("Range of Bytes: \n");
+
+  print_selected_bytes(selected_memory);
 }
