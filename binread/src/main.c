@@ -35,6 +35,7 @@ int main(int argc, char *argv[])
   printf("Enter the second offset of the Range (Range <= 4 bytes): \n");
   scanf("%8X", &offset_two);
 
+  eat_input(stdin);
 
   selected_memory = select_memory(input, offset_one, offset_two);
 

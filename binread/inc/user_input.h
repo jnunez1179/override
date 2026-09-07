@@ -13,8 +13,9 @@ enum endian {
 
 uint8_t parse_endianness(FILE *std_in);
 
-bool is_new_line(char *str, size_t size);
 void eat_input(FILE *std_in);
+bool is_new_line(char *str, size_t size);
+
 
 
 

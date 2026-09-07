@@ -19,8 +19,7 @@ uint8_t parse_endianness(FILE *std_in)
     {
       if (!is_new_line(input_endianess, input_endianness_size))
       {
-        int ch;
-        while (((ch = getc(std_in)) != '\n') && (ch != EOF)) {}
+        eat_input(std_in);
       }
       return WRONG_INPUT;
     }
@@ -35,6 +34,13 @@ uint8_t parse_endianness(FILE *std_in)
       return LITTLE;
     }
     return WRONG_INPUT;
+}
+
+
+void eat_input(FILE *std_in)
+{
+  int ch;
+  while (((ch = getc(std_in)) != '\n') && (ch != EOF)) {}
 }
 
 bool is_new_line(char *str, size_t size)
