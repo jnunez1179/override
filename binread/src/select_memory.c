@@ -7,28 +7,10 @@
 #include "../inc/select_memory.h"
 
 #define ENDIAN_VALUES 2
+#define SIZE_SELECTED 40
 
 struct size {
-  union {
-    uint8_t selected_bytes[4];
-    union {
-      int32_t int32;
-      uint32_t uint32;
-      float floater;
-    } four_bytes;
-
-    union {
-      int16_t int16;
-      uint16_t uint16;
-      short shorter;
-    } two_bytes;
-
-    union {
-      int8_t int8;
-      uint8_t uint8;
-      char character;
-    } one_byte;
-  } memory;
+  uint8_t selected_bytes[4];
   uint8_t amount_bytes;
 };
 
@@ -63,7 +45,7 @@ Bytes select_memory(Buffer input, uint32_t offset_one, uint32_t offset_two)
    // Implement functionality to make program prompt another range if range is invalid
 
    uint32_t i = 0;
-   do {m->memory.selected_bytes[i] = return_buffer_byte(input, beginning++);}
+   do {m->selected_bytes[i] = return_buffer_byte(input, beginning++);}
    while (i++ < range);
 
    m->amount_bytes = i;
@@ -78,7 +60,7 @@ uint8_t return_memory_byte(Bytes selected_memory, uint8_t offset)
       printf("Reached out of Selected Memory Range.\n");
       exit(EXIT_FAILURE);
     }
-  return selected_memory->memory.selected_bytes[offset];
+  return selected_memory->selected_bytes[offset];
 }
 
 uint8_t return_memory_size(Bytes selected_memory)
