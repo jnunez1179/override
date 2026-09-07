@@ -85,3 +85,12 @@ uint8_t return_memory_size(Bytes selected_memory)
 {
   return selected_memory->amount_bytes;
 }
+
+void print_selected_bytes(Bytes selected_memory)
+{
+  for (uint8_t i = 0; i < return_memory_size(selected_memory); i++)
+  {
+    printf("%.2hhX ", return_memory_byte(selected_memory, i));
+  }
+  printf("\n");
+}
