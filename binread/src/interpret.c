@@ -35,6 +35,19 @@ char *available_types(uint8_t pos)
   return type_table[pos];
 }
 
+
+bool test_endianness()
+{
+  uint16_t val = 0x1234;
+  uint8_t byte_val;
+  uint8_t *pval;
+
+  pval = (uint8_t *) &val;
+  byte_val = (uint8_t) val;
+
+  return (byte_val == *pval) ? LITTLE_ENDIAN : BIG_ENDIAN;
+}
+
 char *interpret_memory(Bytes selected_memory, bool machine_endianness, bool input_endianess, char *type)
 {
 
