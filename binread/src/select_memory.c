@@ -36,7 +36,7 @@ bool endianess[ENDIAN_VALUES] = {false};
 
 Bytes select_memory(Buffer input, uint32_t offset_one, uint32_t offset_two)
 {
-  Bytes m = calloc(return_buffer_size(input), sizeof(return_buffer_byte(input, 0)));
+  Bytes m = calloc(SIZE_SELECTED, sizeof(return_buffer_byte(input, 0)));
 
    if (m == NULL)
    {
