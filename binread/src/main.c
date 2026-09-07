@@ -46,4 +46,23 @@ int main(int argc, char *argv[])
 
   machine_endianness = test_endianness();
 
+  uint8_t input_endianess;
+
+  if ((return_memory_size(selected_memory)) > 1)
+  {
+    printf("What endianness will the value use? (big/little)\n");
+
+    for (;;)
+    {
+      input_endianess = parse_endianness(stdin);
+      if (input_endianess != WRONG_INPUT)
+      {
+        break;
+      }
+      printf("Please enter \"big\" or \"little\"\n");
+    }
+  }
+
+  printf("Endianness Output: %hhu\n", input_endianess);
+}
 
