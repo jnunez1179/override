@@ -57,7 +57,7 @@ Bytes select_memory(Buffer input, uint32_t offset_one, uint32_t offset_two)
 
    if (((range = (end - beginning)) >= 4))
    {
-     printf("Invalid Range of Offsets.\nEnsure 0 < Range >= 4\n");
+     printf("Invalid Range of Offsets.\nEnsure 0 < Range >= 4 bytes\n");
      exit(EXIT_FAILURE);
    }
    // Implement functionality to make program prompt another range if range is invalid
