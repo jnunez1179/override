@@ -8,7 +8,6 @@
 
 #define NAME_SIZE 20
 #define N_BYTES 4
-#define N_TYPES 9
 
 int main(int argc, char *argv[])
 {
@@ -41,21 +40,41 @@ int main(int argc, char *argv[])
 
   bool machine_endianness = test_endianness();
 
-  uint8_t input_endianess;
   if ((return_memory_size(selected_memory)) > 1)
   {
     printf("What endianness will the value use? (big/little)\n");
 
-    for (;;)
-    {
+    uint8_t input_endianess = 0;
+    do {
       input_endianess = parse_endianness(stdin);
-      if (input_endianess != WRONG_INPUT)
+      if (input_endianess == WRONG_ENDIAN_INPUT)
       {
-        break;
+        printf("Please enter \"big\" or \"little\"\n");
       }
-      printf("Please enter \"big\" or \"little\"\n");
-    }
+    } while (input_endianess == WRONG_ENDIAN_INPUT);
   }
-  printf("Endianness Output: %hhu\n", input_endianess);
+
+  printf("\nWhat Type Would You Like Your Range of Values to be Interpreted As?\n");
+
+
+  uint8_t input_type = 0;
+  do {
+    printf("\nOptions:\n");
+    for (uint8_t i = 0; i < N_TYPES; i++)
+    {
+      printf("%s\n", available_types(i));
+    }
+
+    printf("\nRange of Bytes: \n");
+    print_selected_bytes(selected_memory);
+
+    input_type = parse_type(stdin);
+    if (input_type == WRONG_TYPE_INPUT)
+    {
+      printf("\nNot an option.\n");
+    }
+  } while (input_type == WRONG_TYPE_INPUT);
+
+  printf("\n%hhu\n", input_type);
 }
 

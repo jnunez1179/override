@@ -1,6 +1,7 @@
 #ifndef INTERPRET_H
 #define INTERPRET_H
 
+#define N_TYPES 9
 #define LITTLE_ENDIAN true
 #define BIG_ENDIAN false
 

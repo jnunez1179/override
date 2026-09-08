@@ -1,11 +1,11 @@
-#include <endian.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <string.h>
 #include <stdbool.h>
+#include <sys/types.h>
 #include "../inc/user_input.h"
+#include "../inc/interpret.h"
 
-#define ENDIAN_BUFFER_SIZE 8
 
 uint8_t parse_endianness(FILE *std_in)
 {
@@ -21,7 +21,7 @@ uint8_t parse_endianness(FILE *std_in)
       {
         eat_input(std_in);
       }
-      return WRONG_INPUT;
+      return WRONG_ENDIAN_INPUT;
     }
 
     if (((strncmp(input_endianess, "big\n", 4)) == 0))
@@ -33,9 +33,37 @@ uint8_t parse_endianness(FILE *std_in)
     {
       return LITTLE;
     }
-    return WRONG_INPUT;
+    return WRONG_ENDIAN_INPUT;
 }
 
+uint8_t parse_type(FILE* std_in)
+{
+  uint8_t type_array[] = {INT32, UINT32, FLOAT, INT16, UINT16, SHORT, INT8, UINT8, CHAR, WRONG_TYPE_INPUT, TYPE_COUNT};
+
+  for (;;)
+  {
+    char type_input[TYPE_BUFFER_SIZE] = {0};
+    fgets(type_input, TYPE_BUFFER_SIZE, std_in);
+    char *cleaned_type_input;
+
+    if (is_new_line(type_input, TYPE_BUFFER_SIZE))
+    {
+      cleaned_type_input = remove_new_line(type_input);
+    } else {
+      eat_input(std_in);
+    }
+
+
+    for (uint8_t i = 0; i < TYPE_COUNT; i++)
+    {
+      if ((strcmp(available_types(i), cleaned_type_input) == 0))
+      {
+        return type_array[i];
+      }
+    }
+    return WRONG_TYPE_INPUT;
+  }
+}
 
 void eat_input(FILE *std_in)
 {
@@ -51,5 +79,14 @@ bool is_new_line(char *str, size_t size)
       return true;
   }
   return false;
+}
+
+char *remove_new_line(char *str)
+{
+  uint8_t i = 0;
+  while ((*(str + i++) != '\n')) {}
+  *(str + --i) = '\0';
+
+  return str;
 }
 
