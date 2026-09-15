@@ -75,10 +75,14 @@ int main(int argc, char *argv[])
     {
       printf("\nNot an option.\n");
     }
-    printf("-------------\nValue: ");
-    print_interpretation(interpretation, input_type);
+
+    if (input_type != EXIT)
+    {
+      printf("-------------\nValue: ");
+      print_interpretation(interpretation, input_type);
+    }
 
   } while ((input_type == WRONG_TYPE_INPUT) || (input_type != EXIT));
-
 }
+
 

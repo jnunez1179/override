@@ -149,7 +149,12 @@ void print_interpretation(Interpretation interpretation, uint8_t type)
       }
     case CHAR:
       {
-        printf("%c\n", interpretation->memory.one_byte.character);
+        for (uint8_t i = 0; i < interpretation->size; i++)
+        {
+          printf("%c ", interpretation->memory.one_byte.character);
+          interpretation->memory.four_bytes.uint32 = (interpretation->memory.four_bytes.uint32 >> 8) | (interpretation->memory.four_bytes.uint32 << 24);
+        }
+        printf("\n");
         return;
       }
     default:
