@@ -24,8 +24,9 @@ enum type {
   INT8 = 6,
   UINT8 = 7,
   CHAR = 8,
-  TYPE_COUNT = 9,
-  WRONG_TYPE_INPUT = 10
+  EXIT = 9,
+  TYPE_COUNT = 10,
+  WRONG_TYPE_INPUT = 11,
 };
 
 uint8_t parse_endianness(FILE *std_in);

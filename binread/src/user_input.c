@@ -38,7 +38,7 @@ uint8_t parse_endianness(FILE *std_in)
 
 uint8_t parse_type(FILE* std_in)
 {
-  uint8_t type_array[] = {INT32, UINT32, FLOAT, INT16, UINT16, SHORT, INT8, UINT8, CHAR, WRONG_TYPE_INPUT, TYPE_COUNT};
+  uint8_t type_array[] = {INT32, UINT32, FLOAT, INT16, UINT16, SHORT, INT8, UINT8, CHAR, EXIT, WRONG_TYPE_INPUT };
 
   for (;;)
   {

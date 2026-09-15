@@ -32,7 +32,7 @@ struct interpret {
 };
 
 
-char *type_table[] = {"int32", "uint32", "float", "int16", "uint16", "short", "int8", "uint8", "char"};
+char *type_table[] = {"int32", "uint32", "float", "int16", "uint16", "short", "int8", "uint8", "char", "exit"};
 
 char *value_type(uint8_t pos)
 {
@@ -134,7 +134,7 @@ void print_interpretation(Interpretation interpretation, uint8_t type)
       }
     case SHORT:
       {
-        printf("%hd", interpretation->memory.two_bytes.shorter);
+        printf("%hd\n", interpretation->memory.two_bytes.shorter);
         return;
       }
     case INT8:

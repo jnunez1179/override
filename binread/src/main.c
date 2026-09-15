@@ -58,7 +58,7 @@ int main(int argc, char *argv[])
 
   uint8_t input_type = 0;
   do {
-    printf("\nOptions:\n");
+    printf("\nOptions: (\"exit\" to exit )\n");
     for (uint8_t i = 0; i < N_TYPES; i++)
     {
       printf("%s\n", value_type(i));
@@ -75,11 +75,10 @@ int main(int argc, char *argv[])
     {
       printf("\nNot an option.\n");
     }
-
-
+    printf("-------------\nValue: ");
     print_interpretation(interpretation, input_type);
 
-  } while (input_type == WRONG_TYPE_INPUT);
+  } while ((input_type == WRONG_TYPE_INPUT) || (input_type != EXIT));
 
 }
 
