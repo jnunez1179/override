@@ -12,7 +12,6 @@
 int main(int argc, char *argv[])
 {
   Buffer input;
-  Bytes selected_memory;
 
   FILE *file;
   file = fopen(argv[1], "r");
@@ -33,6 +32,7 @@ int main(int argc, char *argv[])
 
   eat_input(stdin);
 
+  Bytes selected_memory;
   selected_memory = select_memory(input, offset_one, offset_two);
 
   printf("Range of Bytes: \n");
@@ -40,11 +40,11 @@ int main(int argc, char *argv[])
 
   bool machine_endianness = test_endianness();
 
+  uint8_t input_endianess = 0;
   if ((return_memory_size(selected_memory)) > 1)
   {
     printf("What endianness will the value use? (big/little)\n");
 
-    uint8_t input_endianess = 0;
     do {
       input_endianess = parse_endianness(stdin);
       if (input_endianess == WRONG_ENDIAN_INPUT)
@@ -56,13 +56,12 @@ int main(int argc, char *argv[])
 
   printf("\nWhat Type Would You Like Your Range of Values to be Interpreted As?\n");
 
-
   uint8_t input_type = 0;
   do {
     printf("\nOptions:\n");
     for (uint8_t i = 0; i < N_TYPES; i++)
     {
-      printf("%s\n", available_types(i));
+      printf("%s\n", value_type(i));
     }
 
     printf("\nRange of Bytes: \n");
@@ -75,6 +74,9 @@ int main(int argc, char *argv[])
     }
   } while (input_type == WRONG_TYPE_INPUT);
 
-  printf("\n%hhu\n", input_type);
+  Interpretation interpretation;
+  interpretation = sort_endianness(selected_memory, machine_endianness, input_endianess);
+
+  print_interpretation(interpretation, input_type);
 }
 

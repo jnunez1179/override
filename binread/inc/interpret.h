@@ -7,10 +7,14 @@
 
 #include <stdbool.h>
 #include <stdint.h>
+#include "select_memory.h"
 
 typedef struct interpret *Interpretation;
 
-char *available_types(uint8_t pos);
+char *value_type(uint8_t pos);
+
+Interpretation sort_endianness(Bytes selected_memory, bool machine_endianness, bool input_endianess);
+void print_interpretation(Interpretation interpretation, uint8_t type);
 
 bool test_endianness();
 

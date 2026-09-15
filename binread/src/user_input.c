@@ -56,7 +56,7 @@ uint8_t parse_type(FILE* std_in)
 
     for (uint8_t i = 0; i < TYPE_COUNT; i++)
     {
-      if ((strcmp(available_types(i), cleaned_type_input) == 0))
+      if ((strcmp(value_type(i), cleaned_type_input) == 0))
       {
         return type_array[i];
       }
