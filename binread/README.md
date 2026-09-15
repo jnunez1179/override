@@ -1,11 +1,3 @@
-# override
-
-A collection of low-level C projects focused on binary data, memory
-representation, and systems programming.
-
-The repository currently contains **binread**, an interactive
-command-line binary inspection tool written in C.
-
 ## binread
 `binread` is an interactive command-line binary inspection tool written in C. It
 loads a binary file into a byte-addressable buffer, displays its contents in
