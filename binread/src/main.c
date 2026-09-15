@@ -43,7 +43,7 @@ int main(int argc, char *argv[])
   uint8_t input_endianess = 0;
   if ((return_memory_size(selected_memory)) > 1)
   {
-    printf("What endianness will the value use? (big/little)\n");
+    printf("\nWhat endianness will the value use? (big/little)\n");
 
     do {
       input_endianess = parse_endianness(stdin);
@@ -64,19 +64,22 @@ int main(int argc, char *argv[])
       printf("%s\n", value_type(i));
     }
 
-    printf("\nRange of Bytes: \n");
-    print_selected_bytes(selected_memory);
+    printf("\nArranged Bytes:\n");
+
+    Interpretation interpretation;
+    interpretation = sort_endianness(selected_memory, machine_endianness, input_endianess);
+    print_interpreted_bytes(interpretation);
 
     input_type = parse_type(stdin);
     if (input_type == WRONG_TYPE_INPUT)
     {
       printf("\nNot an option.\n");
     }
+
+
+    print_interpretation(interpretation, input_type);
+
   } while (input_type == WRONG_TYPE_INPUT);
 
-  Interpretation interpretation;
-  interpretation = sort_endianness(selected_memory, machine_endianness, input_endianess);
-
-  print_interpretation(interpretation, input_type);
 }
 

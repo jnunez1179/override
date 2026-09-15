@@ -79,6 +79,30 @@ Interpretation sort_endianness(Bytes selected_memory, bool machine_endianness, b
   return interpret;
 }
 
+uint8_t return_interpreted_byte(Interpretation interpretation, uint8_t offset)
+{
+  if (offset >= interpretation->size)
+    {
+      printf("Reached out of Interpreted Memory Range.\n");
+      exit(EXIT_FAILURE);
+    }
+  return interpretation->memory.selected_bytes[offset];
+}
+
+uint8_t return_interpreted_size(Interpretation interpretation)
+{
+  return interpretation->size;
+}
+
+void print_interpreted_bytes(Interpretation interpretation)
+{
+  for (uint8_t i = 0; i < return_interpreted_size(interpretation); i++)
+  {
+    printf("%.2hhX ", return_interpreted_byte(interpretation, i));
+  }
+  printf("\n");
+}
+
 void print_interpretation(Interpretation interpretation, uint8_t type)
 {
   switch (type)

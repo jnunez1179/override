@@ -12,10 +12,15 @@
 typedef struct interpret *Interpretation;
 
 char *value_type(uint8_t pos);
+bool test_endianness();
 
 Interpretation sort_endianness(Bytes selected_memory, bool machine_endianness, bool input_endianess);
 void print_interpretation(Interpretation interpretation, uint8_t type);
 
-bool test_endianness();
+uint8_t return_interpreted_byte(Interpretation interpretation, uint8_t offset);
+uint8_t return_interpreted_size(Interpretation interpretation);
+void print_interpreted_bytes(Interpretation interpretation);
+
+
 
 #endif
