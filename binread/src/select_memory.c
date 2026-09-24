@@ -6,8 +6,7 @@
 #include "../inc/read_bytes.h"
 #include "../inc/select_memory.h"
 
-#define ENDIAN_VALUES 2
-#define SIZE_SELECTED 40
+#define SIZE_SELECTED 5
 
 struct size {
   uint8_t selected_bytes[4];
