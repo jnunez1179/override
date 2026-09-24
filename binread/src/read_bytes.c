@@ -15,7 +15,7 @@ struct buffer{
   uint32_t buffer_size;
 };
 
-Buffer init_buffer()
+Buffer init_buffer(void)
 {
   Buffer output = malloc(sizeof(struct buffer));
   if (output == NULL)
