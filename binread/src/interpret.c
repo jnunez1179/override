@@ -62,7 +62,7 @@ Interpretation sort_endianness(Bytes selected_memory, bool machine_endianness, b
     exit(EXIT_FAILURE);
   }
 
-  if (machine_endianness != input_endianess)
+  if (machine_endianness == input_endianess)
   {
     interpret->size = return_memory_size(selected_memory);
     for (uint8_t i = 0; i < interpret->size; i++)
