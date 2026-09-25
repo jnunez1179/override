@@ -1,6 +1,7 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdbool.h>
+#include <stdlib.h>
 #include "../inc/read_bytes.h"
 #include "../inc/select_memory.h"
 #include "../inc/interpret.h"
@@ -92,9 +93,14 @@ int main(int argc, char *argv[])
 
   printf("\nWhat Type Would You Like Your Range of Values to be Interpreted As?\n");
 
+  Interpretation interpretation;
   uint8_t input_type = 0;
   do {
-    printf("\nOptions: (\"exit\" to exit )\n");
+    if (input_type == WRONG_TYPE_INPUT)
+    {
+      free(interpretation);
+    }
+    printf("\nOptions: (\"exit\" to exit program)\n");
     for (uint8_t i = 0; i < N_TYPES; i++)
     {
       printf("- %s\n", value_type(i));
