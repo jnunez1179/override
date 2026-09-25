@@ -149,10 +149,9 @@ void print_interpretation(Interpretation interpretation, uint8_t type)
       }
     case CHAR:
       {
-        for (uint8_t i = 0; i < interpretation->size; i++)
+        for ( uint8_t i = interpretation->size; i > 0;)
         {
-          printf("%c ", interpretation->memory.one_byte.character);
-          interpretation->memory.four_bytes.uint32 = (interpretation->memory.four_bytes.uint32 >> 8) | (interpretation->memory.four_bytes.uint32 << 24);
+          printf("%c ", interpretation->memory.selected_bytes[--i]);
         }
         printf("\n");
         return;
