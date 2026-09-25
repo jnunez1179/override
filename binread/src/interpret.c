@@ -96,9 +96,9 @@ uint8_t return_interpreted_size(Interpretation interpretation)
 
 void print_interpreted_bytes(Interpretation interpretation)
 {
-  for (uint8_t i = 0; i < return_interpreted_size(interpretation); i++)
+  for (uint8_t i = return_interpreted_size(interpretation); i > 0;)
   {
-    printf("%.2hhX ", return_interpreted_byte(interpretation, i));
+    printf("%.2hhX ", return_interpreted_byte(interpretation, --i));
   }
   printf("\n");
 }
