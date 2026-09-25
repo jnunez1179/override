@@ -12,6 +12,7 @@ enum endian {
   BIG = 0,
   LITTLE = 1,
   WRONG_ENDIAN_INPUT = 2,
+  ENDIAN_EXIT = 3
 };
 
 enum type {

@@ -73,11 +73,21 @@ int main(int argc, char *argv[])
 
     do {
       input_endianess = parse_endianness(stdin);
+      if (input_endianess == ENDIAN_EXIT)
+      {
+        break;
+      }
+
       if (input_endianess == WRONG_ENDIAN_INPUT)
       {
         printf("Please enter \"big\" or \"little\"\n");
       }
     } while (input_endianess == WRONG_ENDIAN_INPUT);
+  }
+
+  if (input_endianess == ENDIAN_EXIT)
+  {
+    return 0;
   }
 
   printf("\nWhat Type Would You Like Your Range of Values to be Interpreted As?\n");
@@ -103,7 +113,7 @@ int main(int argc, char *argv[])
       printf("\nNot an option.\n");
     }
 
-    if (input_type != EXIT)
+    if ((input_type != EXIT ) && input_type != WRONG_TYPE_INPUT)
     {
       printf("\n-----------------------------\n");
       printf("Value: ");

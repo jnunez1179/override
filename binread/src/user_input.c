@@ -15,7 +15,7 @@ uint8_t parse_endianness(FILE *std_in)
     fgets(input_endianess, ENDIAN_BUFFER_SIZE, std_in);
     input_endianness_size = strnlen(input_endianess, ENDIAN_BUFFER_SIZE);
 
-    if (((strncmp(input_endianess, "big\n", 4)) != 0) && ((strncmp(input_endianess, "little\n", 7)) != 0))
+    if (((strncmp(input_endianess, "big\n", 4)) != 0) && ((strncmp(input_endianess, "little\n", 7)) != 0) && ((strncmp(input_endianess, "exit\n", 6))))
     {
       if (!is_new_line(input_endianess, input_endianness_size))
       {
@@ -32,6 +32,11 @@ uint8_t parse_endianness(FILE *std_in)
     if ((strncmp(input_endianess, "little\n", 7)) == 0)
     {
       return LITTLE;
+    }
+
+    if ((strncmp(input_endianess, "exit\n", 6)) == 0)
+    {
+      return ENDIAN_EXIT;
     }
     return WRONG_ENDIAN_INPUT;
 }
