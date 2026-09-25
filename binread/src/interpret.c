@@ -119,7 +119,7 @@ void print_interpretation(Interpretation interpretation, uint8_t type)
       }
     case FLOAT:
       {
-        printf("%f\n", interpretation->memory.four_bytes.floater);
+        printf("%g\n", interpretation->memory.four_bytes.floater);
         return;
       }
     case INT16:
