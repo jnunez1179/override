@@ -24,16 +24,39 @@ int main(int argc, char *argv[])
 
   print_buffer(input, N_BYTES);
 
-  uint32_t offset_one, offset_two;
-  printf("\nEnter the first offset of the Range (Range <= 4 bytes): \n");
-  scanf("%8X", &offset_one);
-  printf("Enter the second offset of the Range (Range <= 4 bytes): \n");
-  scanf("%8X", &offset_two);
-
-  eat_input(stdin);
-
   Bytes selected_memory;
-  selected_memory = select_memory(input, offset_one, offset_two);
+  bool is_correct_range_bound = true;
+  do {
+    if (is_correct_range_bound == false)
+    {
+      free(selected_memory);
+    }
+
+    uint32_t offset_one, offset_two;
+    printf("\nEnter the first offset of the Range (Range <= 4 bytes): \n");
+    scanf("%8X", &offset_one);
+    printf("Enter the second offset of the Range (Range <= 4 bytes): \n");
+    scanf("%8X", &offset_two);
+
+    eat_input(stdin);
+    selected_memory = select_memory(input, offset_one, offset_two);
+
+    if (return_memory_size(selected_memory) == WRONG_RANGE)
+    {
+      printf("\n----------------------------------------------\n");
+      printf("Ensure Range <= 4 bytes\n");
+      printf("----------------------------------------------\n");
+      is_correct_range_bound = false;
+    }
+
+    if (return_memory_size(selected_memory) == OUT_OF_BOUNDS)
+    {
+      printf("\n----------------------------------------------\n");
+      printf("Ensure Input Offsets are within the Bounds: %.hX\n", return_buffer_size(input) - 1);
+      printf("----------------------------------------------\n");
+      is_correct_range_bound = false;
+    }
+  } while ((return_memory_size(selected_memory) == WRONG_RANGE) || (return_memory_size(selected_memory) == OUT_OF_BOUNDS));
 
   printf("Range of Bytes: \n");
   print_selected_bytes(selected_memory);

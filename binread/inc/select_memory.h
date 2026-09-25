@@ -4,6 +4,11 @@
 #include <stdint.h>
 #include "read_bytes.h"
 
+enum wrong_input {
+  WRONG_RANGE = 5,
+  OUT_OF_BOUNDS = 6
+};
+
 typedef struct size *Bytes;
 
 Bytes select_memory(Buffer input, uint32_t offset_one, uint32_t offset_two);
