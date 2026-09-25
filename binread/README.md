@@ -134,6 +134,7 @@ terminal output
 ![Output](.images/binread5.png)
 ![Output](.images/binread6.png)
 ![Output](.images/binread7.png)
+![Output](.images/binread8.png)
 
 This separation is intentional: the bytes read from the file are
 preserved as raw data until the program has enough information to
