@@ -17,6 +17,13 @@ int main(int argc, char *argv[])
   FILE *file;
   file = fopen(argv[1], "rb");
 
+  if (file == NULL)
+  {
+    printf("Error: File not found\n");
+    printf("Format: ./binread <file>\n");
+    return -1;
+  }
+
   input = init_buffer();
   create_buffer(input, file);
 

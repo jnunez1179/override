@@ -1,11 +1,10 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include <stdlib.h>
-#include "../inc/read_bytes.h"
+#include <stdio.h>
 #include "../inc/select_memory.h"
 #include "../inc/interpret.h"
 #include "../inc/user_input.h"
-#include <stdio.h>
 
 struct interpret {
   union {
