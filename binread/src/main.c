@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
   Buffer input;
 
   FILE *file;
-  file = fopen(argv[1], "r");
+  file = fopen(argv[1], "rb");
 
   input = init_buffer();
   create_buffer(input, file);
